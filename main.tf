@@ -3,7 +3,7 @@ data "azurerm_subscription" "current" {
 
 resource "azurerm_resource_group" "rg" {
   name     = "${var.prefix}-rg-${var.application}-${var.environment}"
-  location = "${var.location}"
+  location = var.location
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
@@ -15,7 +15,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   default_node_pool {
     name       = "default"
     node_count = 1
-    vm_size    = "Standard_D2_v2"
+    vm_size    = "Standard_D2s_v3"
   }
 
   identity {
@@ -33,6 +33,6 @@ output "client_certificate" {
 }
 
 output "kube_config" {
-  value = azurerm_kubernetes_cluster.aks.kube_config_raw
+  value     = azurerm_kubernetes_cluster.aks.kube_config_raw
   sensitive = true
 }

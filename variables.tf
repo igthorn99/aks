@@ -9,11 +9,11 @@ variable "location" {
 }
 
 variable "application" {
-    description = "This is for the application."
-    default = "aks"
+  description = "This is for the application."
+  default     = "aks"
 }
 
 variable "environment" {
   description = "This is the environment variable dev, test, prod"
-  default = "prod"
+  default     = "prod"
 }
